@@ -1,15 +1,17 @@
-<div class="row">
+<div class="row my-4">
   <div class="col-md-12 text-center mr-2">
-    <button class="btn btn-success">Phim Đang Chiếu</button>
-    <button class="btn">Phim Sắp Chiếu</button>
+    <button class="btn btn-success" [ngClass]="{'btn-success':dangChieuStatus}" (click)="HienPhimDangChieu()">Phim Đang Chiếu</button>
+    <button class="btn" (click)="HienPhimSapChieu()" [ngClass]="{'btn-success':!dangChieuStatus}">Phim Sắp Chiếu</button>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12" *ngIf="dangChieuStatus; else phimSapChieu">
     <app-phim-dang-chieu></app-phim-dang-chieu>
   </div>
-  <div class="col-md-12">
-    <app-phim-sap-chieu></app-phim-sap-chieu>
-  </div>
+  <ng-template #phimSapChieu>
+    <div class="col-md-12">
+      <app-phim-sap-chieu></app-phim-sap-chieu>
+    </div>
+  </ng-template>
 </div>

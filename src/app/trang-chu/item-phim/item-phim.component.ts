@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-item-phim',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item-phim.component.css']
 })
 export class ItemPhimComponent implements OnInit {
+  @Input() ItemPhim;
 
   constructor() { }
 
