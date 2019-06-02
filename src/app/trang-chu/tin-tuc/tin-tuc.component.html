@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-md-12 text-center mr-2">
-    <button class="btn btn-success" (click)="ChonLoaiTin('DienAnh')"  >Điện Ảnh</button>
-    <button class="btn" (click)="ChonLoaiTin('ReView')">Review</button>
-    <button class="btn" (click)="ChonLoaiTin('KhuyenMai')" >Khuyến Mãi</button>
+  <div class="col-md-12 text-center mr-2" >
+    <button [ngClass]="{'btn-success' : loaiTinTuc == 'DienAnh'}" class="btn" (click)="ChonLoaiTin('DienAnh')"  >Điện Ảnh</button>
+    <button [ngClass]="{'btn-success': loaiTinTuc == 'ReView'}" class="btn" (click)="ChonLoaiTin('ReView')">Review</button>
+    <button [ngClass]="{'btn-success': loaiTinTuc == 'KhuyenMai'}" class="btn" (click)="ChonLoaiTin('KhuyenMai')" >Khuyến Mãi</button>
   </div>
 </div>
 

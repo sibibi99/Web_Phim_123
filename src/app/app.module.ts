@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { TrangChuModule } from './trang-chu/trang-chu.module';
+import { QuanTriGheModule } from './quan-tri-ghe/quan-tri-ghe.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,7 @@ import { TrangChuModule } from './trang-chu/trang-chu.module';
 
   ],
   imports: [
-    BrowserModule, TrangChuModule
+    BrowserModule, TrangChuModule, QuanTriGheModule
   ],
   providers: [],
   bootstrap: [AppComponent]

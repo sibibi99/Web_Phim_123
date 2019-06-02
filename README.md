@@ -40,4 +40,66 @@ Dùng Ẩn hiện khi chỉ có 2 Component
 
 **Dùng [ngSwitch]="loaiTinTuc"**
 Dùng khi Ẩn Hiện có 3 Component trở lên
+--------------------------------------------------
+QUẢN LÝ GHẾ
 
+1. Dùng ngFor lặp ra danh sách ghế
+ - Dùng @Input lấy ra Số ghế từ DanhSachGhe
+ - Dùng @Output 
+    +  (emitStatus)= "DatGheParent($event)"
+ - Hàm đặt ghế:
+  
+  DatGheParent(status, ghe) {
+    if (status) {
+      this.soGheDaDat++;
+      this.soGheConLai--;
+      this.DanhSachGheDangDat.push(ghe);
+    }
+    else {
+      this.soGheDaDat--;
+      this.soGheConLai++;
+      for (let index in this.DanhSachGheDangDat) {
+        if (this.DanhSachGheDangDat[index].SoGhe === ghe.SoGhe) {
+          this.DanhSachGheDangDat.splice(parseInt(index), 1);
+        }
+      }
+    }
+    console.log(this.DanhSachGheDangDat);
+
+
+  }
+  -------------------
+  Disable ghế đã ĐƯợc Chọn
+
+  <ng-container *ngIf = "!itemGhe.TrangThai, else gheDaDuocChon">
+        <button [ngClass]="{'btn-success': status}" class="btn  mr-2 mb-2" (click)= "DatGhe()">{{itemGhe.SoGhe}}</button>
+</ng-container>
+<ng-template #gheDaDuocChon> 
+        <button class="btn btn-danger  mr-2 mb-2" style="cursor: not-allowed">{{itemGhe.SoGhe}}</button>
+</ng-template>
+
+----------------------
+EditgheComponent
+
+ // ViewChild đến Danh Sách GHế
+  @ViewChild(DanhSachGheComponent) DSGheCom;
+-------------------------
+  // Truyền mảng tham số ... Spread oparator
+  themGheParent(...thamso:any[]){
+    let gheDuocThem = {
+      TenGhe: thamso[0],
+      SoGhe: thamso[1],
+      Gia: thamso[2],
+      TrangThai:null
+    }
+    if (thamso[3] == 'false') {
+      gheDuocThem.TrangThai = false;
+    }
+    else{
+      gheDuocThem.TrangThai = true;
+    }
+    console.log(gheDuocThem);
+
+    this.DSGheCom.ThemGhe(gheDuocThem);
+    
+  }
